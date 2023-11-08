@@ -1,0 +1,10 @@
+{
+   "name": "texo-test",
+   "version": "1.0.0",
+   "description": "Teste técnico da Texo-IT",
+   "main": "src/api/index.js",
+   "repository": "github.com/awmpietro/texo-test",
+   "author": "Arthur Mastropietro",
+   "license": "MIT",
+   "private": true
+}
