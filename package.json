@@ -6,5 +6,14 @@
    "repository": "github.com/awmpietro/texo-test",
    "author": "Arthur Mastropietro",
    "license": "MIT",
-   "private": true
+   "private": true,
+   "scripts": {
+      "start": "node src/api/index.js",
+      "dev": "nodemon src/api/index.js",
+      "test": "jest src/api src/shared"
+   },
+   "devDependencies": {
+      "jest": "^29.7.0",
+      "nodemon": "^3.0.1"
+   }
 }

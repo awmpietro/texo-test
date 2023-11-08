@@ -24,8 +24,7 @@ const port = process.env.PORT || 8080;
 const routes = require('./routes');
 
 Object.keys(routes).forEach((key) => {
-   // app.use(`/${key}`, routes[key]);
-   app.use(`/`, routes[key]);
+   app.use(`/${key}`, routes[key]);
 });
 
 app.use(errorHandler);
