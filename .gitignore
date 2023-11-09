@@ -39,6 +39,7 @@ build/Release
 
 # dotenv environment variables file
 .env
+.env.development
 .env.*.local
 .env.local
 .env.test
