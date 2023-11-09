@@ -47,8 +47,7 @@ app.listen(port, async () => {
    console.log(`Server is running on port: ${port}`);
    try {
       // Load initial data from CSV file
-      await loadCSVData(path.join(__dirname, `./data/${process.env.FILENAME || 'movielist.csv'}`));
-      console.log('CSV data successfully loaded');
+      await loadCSVData();
    } catch (error) {
       console.error('failed to load csv data:', error);
    }

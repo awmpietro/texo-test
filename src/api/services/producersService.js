@@ -31,28 +31,36 @@ const getAwardIntervalsService = (docs) => {
       return { min: [], max: [] };
    }
 
-   let maxInterval = { producer: '', interval: 0, previousWin: 0, followingWin: 0 };
-   let minInterval = { producer: '', interval: Infinity, previousWin: 0, followingWin: 0 };
+   let maxIntervals = [];
+   let minIntervals = [];
+   let minIntervalLength = Infinity;
+   let maxIntervalLength = 0;
 
-   // Calculate intervals
+   // Algo for calculating intervals
    for (let producer in producerWins) {
       let years = producerWins[producer].sort((a, b) => a - b);
       for (let i = 0; i < years.length - 1; i++) {
          let interval = years[i + 1] - years[i];
 
-         if (interval > maxInterval.interval) {
-            maxInterval = { producer, interval, previousWin: years[i], followingWin: years[i + 1] };
+         if (interval > maxIntervalLength) {
+            maxIntervalLength = interval;
+            maxIntervals = [{ producer, interval, previousWin: years[i], followingWin: years[i + 1] }];
+         } else if (interval === maxIntervalLength) {
+            maxIntervals.push({ producer, interval, previousWin: years[i], followingWin: years[i + 1] });
          }
 
-         if (interval < minInterval.interval) {
-            minInterval = { producer, interval, previousWin: years[i], followingWin: years[i + 1] };
+         if (interval < minIntervalLength) {
+            minIntervalLength = interval;
+            minIntervals = [{ producer, interval, previousWin: years[i], followingWin: years[i + 1] }];
+         } else if (interval === minIntervalLength) {
+            minIntervals.push({ producer, interval, previousWin: years[i], followingWin: years[i + 1] });
          }
       }
    }
 
    return {
-      min: minInterval.interval !== Infinity ? [minInterval] : [],
-      max: maxInterval.interval !== 0 ? [maxInterval] : [],
+      min: minIntervalLength !== Infinity ? minIntervals : [],
+      max: maxIntervalLength !== 0 ? maxIntervals : [],
    };
 };
 

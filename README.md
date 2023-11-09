@@ -7,7 +7,7 @@ da categoria Pior Filme do Golden Raspberry Awards.
 
 ## Requisitos
 
--  Node.js versão 18.16.1
+-  Node.js versão ^18.16.1
 -  yarn
 -  Docker (opcional)
 
@@ -38,7 +38,7 @@ A API possui 1 endpoint:
 
 -  [GET /producers/award-intervals](http://localhost:8080/producers/award-intervals)
 
-**/producers/award-intervals:** Irá retornar o produtor com maior intervalo entre dois prêmios consecutivos, e o que obteve dois prêmios mais rápido de acordo com o arquivo CSV dentro da pasta /src/data
+**/producers/award-intervals:** Irá retornar 1 ou mais produtores com o maior intervalo entre dois prêmios consecutivos, e 1 ou mais produtores que que obtiveram prêmios mais rápido de acordo com o arquivo CSV dentro da pasta /src/api/data
 
 Exemplo de resposta:
 

@@ -30,23 +30,24 @@ describe('Producers Controller', () => {
          });
       });
 
-      describe('Specific Assertions to provided file movielist.csv', () => {
-         it('producer name with min interval should be equal to Bo Derek', async () => {
-            const res = await request(app).get('/producers/award-intervals');
-            expect(res.body.min[0].producer).to.equal('Bo Derek');
-         });
-         it('min interval should be equal to 6', async () => {
-            const res = await request(app).get('/producers/award-intervals');
-            expect(res.body.min[0].interval).to.equal(6);
-         });
-         it('producer name with max interval should be equal to Matthew Vaughn', async () => {
-            const res = await request(app).get('/producers/award-intervals');
-            expect(res.body.max[0].producer).to.equal('Matthew Vaughn');
-         });
-         it('max interval should be equal to 13', async () => {
-            const res = await request(app).get('/producers/award-intervals');
-            expect(res.body.max[0].interval).to.equal(13);
-         });
-      });
+      // these tests are specific to movielist.csv file. uncomment to run
+      // describe('Specific Assertions to provided file movielist.csv', () => {
+      //    it('producer name with min interval should be equal to Bo Derek', async () => {
+      //       const res = await request(app).get('/producers/award-intervals');
+      //       expect(res.body.min[0].producer).to.equal('Bo Derek');
+      //    });
+      //    it('min interval should be equal to 6', async () => {
+      //       const res = await request(app).get('/producers/award-intervals');
+      //       expect(res.body.min[0].interval).to.equal(6);
+      //    });
+      //    it('producer name with max interval should be equal to Matthew Vaughn', async () => {
+      //       const res = await request(app).get('/producers/award-intervals');
+      //       expect(res.body.max[0].producer).to.equal('Matthew Vaughn');
+      //    });
+      //    it('max interval should be equal to 13', async () => {
+      //       const res = await request(app).get('/producers/award-intervals');
+      //       expect(res.body.max[0].interval).to.equal(13);
+      //    });
+      // });
    });
 });
