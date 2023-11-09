@@ -14,7 +14,7 @@ da categoria Pior Filme do Golden Raspberry Awards.
 ## Instalação usando Docker em máquinas Mac ou Linux:
 
 1. Clonar o repositório: [Texo-Test](https://github.com/awmpietro/texo-test)
-2. Na raíz, rodar o código: `make init`
+2. Na raíz, rodar o código: `make up`
    -  Este comando rodará todos os testes de integração e inicializará a API no docker na porta 8080 do seu localhost.
 3. Caso o cmd `make` não esteja disponível, rodar utilizando diretamente `docker-compose up`
 
