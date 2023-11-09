@@ -11,33 +11,34 @@ const { insertMovies } = require('../config/db');
  * @param {string} filePath - The path to the CSV file to be processed.
  * @param {function} [callback] - An optional callback function to be executed after processing the file. It receives an error as an argument if there is any error during processing.
  */
-const loadCSVData = (filePath, callback) => {
-   const movies = [];
-   fs.createReadStream(filePath)
-      .pipe(
-         csvParser({
-            separator: ';',
-            mapHeaders: ({ header }) => header.trim(),
-            mapValues: ({ value }) => value.trim(),
+const loadCSVData = (filePath) => {
+   return new Promise((resolve, reject) => {
+      const movies = [];
+      fs.createReadStream(filePath)
+         .pipe(
+            csvParser({
+               separator: ';',
+               mapHeaders: ({ header }) => header.trim(),
+               mapValues: ({ value }) => value.trim(),
+            })
+         )
+         .on('data', (data) => {
+            if (data.winner && data.winner.toLowerCase() === 'yes') {
+               data.winner = true;
+            } else {
+               data.winner = false;
+            }
+            movies.push(data);
          })
-      )
-      .on('data', (data) => {
-         if (data.winner && data.winner.toLowerCase() === 'yes') {
-            data.winner = true;
-         } else {
-            data.winner = false;
-         }
-         movies.push(data);
-      })
-      .on('end', () => {
-         console.log('csv file successfully processed');
-         insertMovies(movies);
-         if (callback) callback();
-      })
-      .on('error', (error) => {
-         console.error('error processing csv file', error);
-         if (callback) callback(error);
-      });
+         .on('end', () => {
+            console.log('CSV file successfully processed');
+            insertMovies(movies);
+            resolve(movies);
+         })
+         .on('error', (error) => {
+            console.error('Error processing CSV file', error);
+            reject(error);
+         });
+   });
 };
-
 module.exports = { loadCSVData };

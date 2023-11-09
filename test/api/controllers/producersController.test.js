@@ -13,8 +13,6 @@ describe('Producers Controller', () => {
             const res = await request(app).get('/producers/award-intervals');
             expect(res.body).to.be.an('object');
          });
-      });
-      describe('Specific Assertions', () => {
          it('should return an object with min and max arrays', async () => {
             const res = await request(app).get('/producers/award-intervals');
             expect(res.body).to.have.all.keys('min', 'max');
@@ -29,6 +27,25 @@ describe('Producers Controller', () => {
             if (res.body.max.length > 0) {
                expect(res.body.max[0]).to.have.all.keys('producer', 'interval', 'previousWin', 'followingWin');
             }
+         });
+      });
+
+      describe('Specific Assertions to provided file movielist.csv', () => {
+         it('producer name with min interval should be equal to Bo Derek', async () => {
+            const res = await request(app).get('/producers/award-intervals');
+            expect(res.body.min[0].producer).to.equal('Bo Derek');
+         });
+         it('min interval should be equal to 6', async () => {
+            const res = await request(app).get('/producers/award-intervals');
+            expect(res.body.min[0].interval).to.equal(6);
+         });
+         it('producer name with max interval should be equal to Matthew Vaughn', async () => {
+            const res = await request(app).get('/producers/award-intervals');
+            expect(res.body.max[0].producer).to.equal('Matthew Vaughn');
+         });
+         it('max interval should be equal to 13', async () => {
+            const res = await request(app).get('/producers/award-intervals');
+            expect(res.body.max[0].interval).to.equal(13);
          });
       });
    });

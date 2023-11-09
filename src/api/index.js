@@ -43,14 +43,15 @@ Object.keys(routes).forEach((key) => {
 // Error handling route
 app.use(errorHandler);
 
-app.listen(port, () => {
+app.listen(port, async () => {
    console.log(`Server is running on port: ${port}`);
-   // Load initial data from CSV file
-   loadCSVData(path.join(__dirname, `./data/${process.env.FILENAME}`), (error) => {
-      if (error) {
-         console.error('failed to load csv data', error);
-      }
-   });
+   try {
+      // Load initial data from CSV file
+      await loadCSVData(path.join(__dirname, `./data/${process.env.FILENAME || 'movielist.csv'}`));
+      console.log('CSV data successfully loaded');
+   } catch (error) {
+      console.error('failed to load csv data:', error);
+   }
 });
 
 // Export the Express app for testing

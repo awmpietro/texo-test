@@ -10,7 +10,7 @@
    "scripts": {
       "start": "node src/api/index.js",
       "dev": "NODE_ENV=development nodemon src/api/index.js",
-      "test": "mocha 'test/**/*.test.js'"
+      "test": "mocha 'test/**/*.test.js' --exit"
    },
    "devDependencies": {
       "chai": "^4.3.10",
@@ -20,7 +20,13 @@
       "supertest": "^6.3.3"
    },
    "dependencies": {
+      "body-parser": "^1.20.2",
+      "cors": "^2.8.5",
       "csv-parser": "^3.0.0",
+      "dotenv": "^16.3.1",
+      "express": "^4.18.2",
+      "helmet": "^7.1.0",
+      "morgan": "^1.10.0",
       "nedb": "^1.8.0"
    }
 }
