@@ -1,5 +1,4 @@
-const ErrorHandler = require('./ErrorHandler'); // Adjust the path as necessary
-
+const ErrorHandler = require('./ErrorHandler');
 /**
  * Middleware for handling errors in Express.
  * This middleware function logs the error stack to the console and sends a 500 internal server error response.
