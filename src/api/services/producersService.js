@@ -14,8 +14,9 @@ const getAwardIntervalsService = (docs) => {
    // Group by producer and collect years of wins
    docs.forEach((doc) => {
       if (doc.winner) {
-         let producers = doc.producers.split(' and ').join(',').split(', ');
+         let producers = doc.producers.split(/, | and /);
          producers.forEach((producer) => {
+            producer = producer.trim()
             if (!producerWins[producer]) {
                producerWins[producer] = [];
             }
